@@ -61,14 +61,14 @@ char PlayerMove(char board[][COL], int row, int col)
 				board[x - 1][y -1] = 'X';
 				break;
 			}
-			//else
-			//{
-			//	printf("该坐标已经下过棋子了！");
-			//}
+			else
+			{
+				printf("该坐标已经下过棋子了！\n");
+			}
 		}
 		else
 		{
-			printf("输入的坐标不合法！");
+			printf("输入的坐标不合法！\n");
 		}
 	}
 	return 'X';
