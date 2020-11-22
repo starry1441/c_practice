@@ -41,8 +41,8 @@ void test()
 {
 	char str[101] = { 0 };
 	gets(str);
-//	reverseword(str);
-	reverse(str, str + strlen(str) - 1);
+	reverseword(str);
+//	reverse(str, str + strlen(str) - 1);
 	printf("%s\n", str);
 }
 
