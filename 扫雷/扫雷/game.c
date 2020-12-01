@@ -6,10 +6,10 @@ char** creatMat(int row, int col)
 {
 	//增加2行2列，便于计算每个位置雷的个数
 	//创建一个指针数组
-	char** Mat = (char**)malloc(sizeof(char*)*(row + 2));
+	char** Mat = (char**)malloc(sizeof(char*)*(row + 2));//动态开辟内存
 	for (int i = 0; i < row+2; i++)
 	{
-		Mat[i] = (char*)malloc(sizeof(char)*(col + 2));
+		Mat[i] = (char*)malloc(sizeof(char)*(col + 2));//动态开辟内存
 	}
 	return Mat;
 }
@@ -29,15 +29,16 @@ void initMat(char** Mat, int row, int col, char ch)
 //随机埋雷
 void setMine(char** Mat, int row, int col)
 {
-	int count = MINE_NUM;
+	int count = MINE_NUM;	//定义雷数
 	while (count)
 	{
 		//x:1-row	 y:1-col
 		int x = rand() % row + 1;
 		int y = rand() % col + 1;
+		//若格子不为*(雷)，则在格子埋下雷，雷数减一
 		if (Mat[x][y] != '*')
 		{
-			Mat[x][y] = '*';
+			Mat[x][y] = '*';	
 			count--;
 		}
 	}
@@ -72,10 +73,12 @@ int getMineNum(char** Mat, int row, int col, int x, int y)
 	//旋转矩阵
 	static int posOffset[8][2] = { { -1, -1 }, { -1, 0 }, { -1, 1 }, { 0, -1 }, { 0, 1 }, { 1, -1 }, { 1, 0 }, { 1, 1 } };
 	int count = 0;
+	//依次遍历8个格子
 	for (int i = 0; i < 8; i++)
 	{
 		int nx = x + posOffset[i][0];
 		int ny = y + posOffset[i][1];
+		//如果有雷，则数字加一
 		if (Mat[nx][ny] == '*')
 		{
 			count++;
@@ -138,7 +141,7 @@ void test()
 	char** mineInfo = creatMat(ROW, COL);	//用户界面：雷周围的信息
 
 	initMat(mineMat, ROW, COL, '0');
-	initMat(mineInfo, ROW, COL, '*');
+	initMat(mineInfo, ROW, COL, '-');
 	setMine(mineMat, ROW, COL);
 	printf("雷：\n");
 	showMat(mineMat, ROW, COL);
